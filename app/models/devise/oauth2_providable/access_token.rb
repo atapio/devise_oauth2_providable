@@ -1,6 +1,8 @@
 class Devise::Oauth2Providable::AccessToken < ActiveRecord::Base
   expires_according_to :access_token_expires_in
 
+  attr_accessible :client
+
   before_validation :restrict_expires_at, :on => :create, :if => :refresh_token
   belongs_to :refresh_token
 

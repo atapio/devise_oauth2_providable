@@ -20,6 +20,8 @@ class Devise::Oauth2Providable::TokensController < ApplicationController
   # the iPhone SDK by default has a shared cookie jar for WebViews and NSURL Request's
   # and thus will send a cookie to this method
   def clear_session
+    logger.info("clearing session: #{session.inspect}")
     session.clear
+    logger.info("cleared session: #{session.inspect}")
   end  
 end

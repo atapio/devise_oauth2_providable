@@ -1,3 +1,9 @@
+# This is a fork from https://github.com/socialcast/devise_oauth2_providable
+
+
+
+
+
 # devise_oauth2_providable
 
 Rails3 engine that brings OAuth2 Provider support to your application.

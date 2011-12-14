@@ -33,6 +33,7 @@ module Devise
         Rack::OAuth2::Server::Authorize.new do |req, res|
           @client = Client.find_by_identifier(req.client_id) || req.bad_request!
           res.redirect_uri, @redirect_uri = req.verify_redirect_uri!(@client.redirect_uri)
+          @redirect_uri = res.redirect_uri # for some reason the above does not set this
           if allow_approval
             if params[:approve].present?
               case req.response_type
@@ -43,7 +44,7 @@ module Devise
                 access_token = current_user.access_tokens.create!(:client => @client).token
                 bearer_token = Rack::OAuth2::AccessToken::Bearer.new(:access_token => access_token)
                 res.access_token = bearer_token
-                res.uid = current_user.id
+                #res.uid = current_user.id # method not found
               end
               res.approve!
             else

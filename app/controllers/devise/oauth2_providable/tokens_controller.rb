@@ -24,8 +24,4 @@ class Devise::Oauth2Providable::TokensController < ApplicationController
     session.clear
     logger.info("cleared session: #{session.inspect}")
   end  
-
-  def set_current_user
-    logger.debug("Overriden set_current_user called")
-  end
 end

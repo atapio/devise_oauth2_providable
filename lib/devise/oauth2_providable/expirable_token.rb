@@ -20,10 +20,9 @@ module Devise
           validates :client, :presence => true
           validates :token, :presence => true, :uniqueness => true
 
-          scope :not_expired, lambda {
+          default_scope lambda {
             where(self.arel_table[:expires_at].gteq(Time.now.utc))
           }
-          default_scope not_expired
 
           include LocalInstanceMethods
         end
@@ -55,3 +54,4 @@ module Devise
 end
 
 ActiveRecord::Base.send :include, Devise::Oauth2Providable::ExpirableToken
+

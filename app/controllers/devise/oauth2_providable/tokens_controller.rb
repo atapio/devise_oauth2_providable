@@ -1,5 +1,5 @@
 class Devise::Oauth2Providable::TokensController < ApplicationController
-  before_filter :clear_session
+  #before_filter :clear_session
   before_filter :authenticate_user!
   skip_before_filter :verify_authenticity_token, :only => :create
 
